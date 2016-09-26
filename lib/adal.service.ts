@@ -1,9 +1,18 @@
 /* global adal */
 import { Injectable } from '@angular/core';
 
+import { Observable } from 'rxjs/Rx';
+
 @Injectable()
 export class AdalService {
     // public properties
+    public get config(): adal.Config {
+        return this.authContext.config;
+    }
+    
+    public get userInfo(): OAuthData {
+        return this.oauthData;
+    }
 
     // private fields
     private authContext: adal.AuthenticationContext;
@@ -33,7 +42,69 @@ export class AdalService {
     }
 
     // public methods
+    public login(): void {
+        this.authContext.login();
+    }
+    
+    public loginInProgress(): boolean {
+        return this.authContext.loginInProgress();
+    }
+    
+    public logOut(): void {
+        this.authContext.logOut();
+    }
 
+    public getCachedToken(resource: string): string {
+        return this.authContext.getCachedToken(resource);        
+    }
+
+    public acquireToken(resource:string): Observable<string> {
+        // automated token request call
+        return Observable.bindCallback(function (callback: (tkn: string) => void) {
+            this.authContext.acquireToken(resource, function (error: string, tokenOut: string) {
+                this.authContext._renewActive = false;
+                if(error) {
+                    this.authContext.error('Error when acquiring token for resource: ' + resource, error);
+                    callback(null);
+                } else {
+                    callback(tokenOut);
+                }
+            });
+        });
+    }
+
+    public getUser(): Observable<adal.User> {
+        return Observable.bindCallback(function (callback: (usr: adal.User) => void) {
+            this.authContext.getUser(function(error, user) {
+                if(error) {
+                    this.authContext.error('Error when getting user', error);
+                    callback(null);
+                } else {
+                    callback(user);
+                }
+            });
+        });
+    }
+
+    public getResourceForEndpoint(endpoint: string): string {
+        return this.authContext.getResourceForEndpoint(endpoint);
+    }
+
+    public clearCache(): void {
+        this.authContext.clearCache();
+    }
+
+    public clearCacheForResource(resource: string): void {
+        this.authContext.clearCacheForResource(resource);
+    }
+
+    public info(message: string): void {
+        this.authContext.info(message);
+    }
+
+    public verbose(message: string): void {
+        this.authContext.verbose(message);
+    }
 
     // private methods
     private updateDataFromCache(resource: string): void {
