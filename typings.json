@@ -1,0 +1,8 @@
+{
+    "ambientDependencies": {
+        "es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#7de6c3dd94feaeb21f20054b9f30d5dabc5efabd"
+    },
+    "globalDependencies": {
+        "adal": "github:DefinitelyTyped/DefinitelyTyped/adal-angular/adal.d.ts#53347571e6f44ed9a961b569bb81893fde4789c1"
+    }
+}

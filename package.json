@@ -1,0 +1,50 @@
+{
+  "name": "ng2-adal",
+  "version": "1.0.0",
+  "description": "Microsoft Azure Active Directory Client Library for Angular2 applications.",
+  "main": "./lib/adal.service.ts",
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lint": "tslint ./lib/**/*.ts -t verbose",
+    "test": "tsc && concurrently \"tsc -w\" \"karma start karma.conf.js\"",
+    "test-once": "tsc && karma start karma.conf.js --single-run",
+    "typings": "typings",
+    "postinstall": "typings install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SMK1085/ng2-adal.git"
+  },
+  "keywords": [
+    "ts",
+    "AAD",
+    "adal",
+    "oauth",
+    "angular2"
+  ],
+  "author": {
+    "name": "Sven Maschek",
+    "email": "smaschek85@gmail.com",
+    "url": "http://wemakeyourit.de"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/SMK1085/ng2-adal/issues"
+  },
+  "homepage": "https://github.com/SMK1085/ng2-adal#readme",
+  "dependencies": {
+    "@angular/core": "^2.0.0",
+    "rxjs": "^5.0.0-beta.12",
+    "adal-angular": "~1.0.12"
+  },
+  "devDependencies": {
+    "@angular/compiler": "^2.0.1",
+    "@angular/core": "^2.0.1",
+    "codelyzer": "^1.0.0-beta.0",
+    "rxjs": "^5.0.0-beta.12",
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.3",
+    "zone.js": "^0.6.25"
+  }
+}
