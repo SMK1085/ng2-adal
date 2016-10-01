@@ -3,6 +3,10 @@
         "es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#7de6c3dd94feaeb21f20054b9f30d5dabc5efabd"
     },
     "globalDependencies": {
-        "adal": "github:DefinitelyTyped/DefinitelyTyped/adal-angular/adal.d.ts#53347571e6f44ed9a961b569bb81893fde4789c1"
+        "adal": "github:DefinitelyTyped/DefinitelyTyped/adal-angular/adal.d.ts#53347571e6f44ed9a961b569bb81893fde4789c1",
+        "core-js": "registry:dt/core-js#0.0.0+20160725163759",
+        "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
+        "node": "registry:dt/node#6.0.0+20160909174046",
+        "selenium-webdriver": "registry:dt/selenium-webdriver#2.44.0+20160317120654"
     }
 }

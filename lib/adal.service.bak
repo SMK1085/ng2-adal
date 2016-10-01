@@ -1,17 +1,12 @@
 /* global adal */
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs/Rx';
-
-import { AdalConfig } from './adal-config';
-import { AdalUser } from './adal-user';
-import { OAuthData } from './adal-oauthdata';
-
-export { AdalConfig, AdalUser, OAuthData }
 
 @Injectable()
 export class AdalService {
     // public properties
-    public get config(): AdalConfig {
+    public get config(): AdalServiceConfig {
         return this.authContext.config;
     }
 
@@ -20,30 +15,27 @@ export class AdalService {
     }
 
     // private fields
-    private adalConfig: adal.Config;
     private authContext: any;
     private oauthData: OAuthData;
 
-    // ctor
-    constructor(configOptions: AdalConfig) {
-        this.authContext = {};
+    constructor(configOptions: AdalServiceConfig) {
+        console.log('AdalService instantiated....');
         if (configOptions) {
             // redirect and logout_redirect are set to current location by default
-            let existingHash: string = window.location.hash;
-            let pathDefault: string = window.location.href;
+            // let existingHash: string = window.location.hash;
+            // let pathDefault: string = window.location.href;
 
-            if (existingHash) {
-                pathDefault = pathDefault.replace(existingHash, '');
-            }
+            // if (existingHash) {
+            //     pathDefault = pathDefault.replace(existingHash, '');
+            // }
 
-            this.adalConfig = configOptions;
-            this.adalConfig.redirectUri = this.adalConfig.redirectUri || pathDefault;
-            this.adalConfig.postLogoutRedirectUri = this.adalConfig.postLogoutRedirectUri || pathDefault;
+            // this.configOptions.redirectUri = this.configOptions.redirectUri || pathDefault;
+            // this.configOptions.postLogoutRedirectUri = this.configOptions.postLogoutRedirectUri || pathDefault;
 
             // create instance with given config
-            this.authContext = new AuthenticationContext(this.adalConfig);
+            this.authContext = new AuthenticationContext(configOptions);
         } else {
-            //     console.log('ERROR: You must set configOptions when calling the constructor.');
+            console.log('ERROR: You must set configOptions when calling the constructor.');
             throw new Error('You must set configOptions when calling the constructor.');
         }
 
@@ -118,13 +110,8 @@ export class AdalService {
 
     // private methods
     private updateDataFromCache(resource: string): void {
-
-        if (!this.oauthData) {
-            this.oauthData = new OAuthData();
-        }
-
         let token: string = this.authContext.getCachedToken(resource);
-        this.oauthData.isAuthenticated = token !== null && token.length > 0;
+        this.oauthData.isAuthenticaed = token !== null && token.length > 0;
         let user: adal.User = this.authContext.getCachedUser() || ({ userName: '' } as adal.User);
         this.oauthData.userName = user.userName;
         this.oauthData.profile = user.profile;
@@ -132,3 +119,30 @@ export class AdalService {
     }
 }
 
+export class OAuthData {
+    // public properties
+    isAuthenticaed: boolean;
+    userName: string;
+    loginError: string;
+    profile: any;
+}
+
+@Injectable()
+export class AdalServiceConfig {
+    tenant?: string;
+    clientId: string;
+    redirectUri?: string;
+    cacheLocation?: string;
+    displayCall?: (urlNavigate: string) => any;
+    correlationId?: string;
+    loginResource?: string;
+    resource?: string;
+    endpoints?: any;  // If you need to send CORS api requests.
+    extraQueryParameter?: string;
+    postLogoutRedirectUri?: string; // redirect url after succesful logout operation
+}
+
+export interface AdalUser {
+    userName: string;
+    profile: any;
+}
