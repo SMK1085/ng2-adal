@@ -9,7 +9,7 @@ This library is build to work together with Angular2 applications.
 Current Version - 1.0.0
 
 ## Samples and Documentation
-*** Will follow shortly. ***
+***Will follow shortly.***
 
 ## Issues
 This project is still young, if you wish to collaborate or have any ideas, check out the [issues list](https://github.com/SMK1085/ng2-adal/issues).
