@@ -7,8 +7,8 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lint": "tslint ./lib/**/*.ts -t verbose",
-    "test": "tsc && concurrently \"tsc -w\" \"karma start karma.conf.js\"",
-    "test-once": "tsc && karma start karma.conf.js --single-run",
+    "test-continously": "tsc && concurrently \"tsc -w\" \"karma start karma.conf.js\"",
+    "test": "tsc && karma start karma.conf.js --single-run",
     "typings": "typings",
     "postinstall": "typings install"
   },
