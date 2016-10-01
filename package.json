@@ -28,7 +28,7 @@
     "email": "smaschek85@gmail.com",
     "url": "http://wemakeyourit.de"
   },
-  "license": "Apache-2.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/SMK1085/ng2-adal/issues"
   },
