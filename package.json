@@ -1,5 +1,5 @@
 {
-  "name": "ng2-adal",
+  "name": "angular2-adal-ts",
   "version": "1.0.0",
   "description": "Microsoft Azure Active Directory Client Library for Angular2 applications.",
   "main": "./lib/adal.service.ts",
