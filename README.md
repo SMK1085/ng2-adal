@@ -5,11 +5,11 @@ Active Directory Authentication Library (ADAL) for Angular 2
 This library is build atop of the original [adal-angular](https://github.com/AzureAD/azure-activedirectory-library-for-js) library. 
 This library is build to work together with Angular2 applications.
 
-## Versions
-Current Version - 1.0.0
+## Important
+> This project is discontinued in favor of the new v2.0 endpoint. Link to new project will follow shortly.
 
-## Samples and Documentation
-***Will follow shortly.***
+## Versions
+Current Version - 1.0.0 [deprecated]
 
 ## Issues
 This project is still young, if you wish to collaborate or have any ideas, check out the [issues list](https://github.com/SMK1085/ng2-adal/issues).
